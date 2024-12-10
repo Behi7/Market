@@ -1,0 +1,258 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Foodano - Organic Food Store HTML Template - Login & Register</title>
+    <meta name="author" content="Vecuro">
+    <meta name="description" content="Foodano - Organic Food Store HTML Template">
+    <meta name="keywords" content="Foodano - Organic Food Store HTML Template" />
+    <meta name="robots" content="INDEX,FOLLOW">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--==============================
+	   Google Web Fonts
+	============================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@200;300;400;500;600;700&family=Amatic+SC:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicons - Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/img/favicons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/img/favicons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/img/favicons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/favicons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/img/favicons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/img/favicons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/img/favicons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/img/favicons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/img/favicons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--==============================
+	    All CSS File
+	============================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap.rtl.min.css"> -->
+    <!-- <link rel="stylesheet" href="assets/css/app.min.css"> -->
+    <!-- Fontawesome Icon -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css'%}">
+    <!-- Flaticon -->
+    <link rel="stylesheet" href="{% static 'assets/css/flaticon.min.css'%}">
+    <!-- Layerslider -->
+    <link rel="stylesheet" href="{% static 'assets/css/layerslider.min.css'%}">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{% static 'assets/css/jquery.datetimepicker.min.css'%}">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css'%}">
+    <!-- Slick Slider -->
+    <link rel="stylesheet" href="{% static 'assets/css/slick.min.css'%}">
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css'%}">
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+
+</head>
+
+<body class="">
+
+
+    <!--==============================
+     Preloader
+  ==============================-->
+    <div class="preloader  ">
+        <button class="vs-btn preloaderCls">Cancel Preloader </button>
+        <div class="preloader-inner">
+            <div class="loader-logo">
+                <img src="{% static 'assets/img/logo.svg' %}" alt="Foodano">
+            </div>
+            <div class="loader-wrap pt-4">
+                <span class="loader"></span>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+    Mobile Menu
+  ============================== -->
+    <div class="vs-menu-wrapper">
+        <div class="vs-menu-area">
+            <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo">
+                <a href="{% url 'index' %}"><img src="{% static 'assets/img/logo.svg' %}" alt="Foodano"></a>
+            </div>
+            <div class="vs-mobile-menu link-inherit"></div><!-- Menu Will Append With Javascript -->
+        </div>
+    </div>
+    <!--==============================
+        Header Area
+    ==============================-->
+    <div class="menu-area">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col col-lg-auto">
+                    <div class="header-logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'assets/img/logo.svg' %}" alt="Foodano"></a>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <nav class="main-menu mobile-menu-active menu-style2">
+                        <ul>
+                            <li class="menu-item-has">
+                                <a href="{% url 'index' %}">домой</a>
+                            </li>
+                            <li class="menu-item-has">
+                                <a href="{% url 'shop' %}">магазин</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-auto d-none d-sm-block">
+                    <div class="header-buttons">
+                        {% if user.username %}
+                        <a href="{% url 'log_out' %}"><i class="fal fa-user"></i>{{ user.username }}</a>
+                        {% else %}
+                        <a href="{% url 'login' %}"><i class="fal fa-login"></i>login/register</a>
+                        {% endif %}
+                        <button type="button" class="searchBoxTggler"><i class="far fa-search"></i></button>
+                        <a href="{% url 'wishList' %}"><i class="fal fa-heart"></i></a>
+                        <a href="{% url 'myCart' %}"><i class="fal fa-shopping-cart"></i><span class="badge"></span></a>
+                    </div>
+                </div>
+                <div class="col-auto d-block d-lg-none">
+                    <button type="button" class="vs-menu-toggle "><i class="far fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+    Breadcumb
+============================== -->
+    <div class="breadcumb-wrapper breadcumb-layout1 bg-fluid pt-200 pb-199">
+        <div class="container">
+            <div class="breadcumb-content text-center">
+                <h1 class="breadcumb-title">вход / регистрация</h1>
+                <ul class="breadcumb-menu-style1 mx-auto">
+                    <li><a href="index.html">домой</a></li>
+                    <li class="active">вход / регистрация</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <section class="space-top space-md-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="page-10" class="post-10 page type-page status-publish hentry page--item">
+                        <div class="woocommerce--content">
+                            <div class="woocommerce">
+                                <div class="woocommerce-notices-wrapper"></div>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6">
+                                        <div class="login-register-wrapper">
+                                            <div class="tab-btn mb-20">
+                                                <ul class="nav nav-tabs login-tab" role="tablist">
+                                                    <li class="nav-item" data-tab-select="login"><button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" role="tab" aria-controls="login" aria-selected="true">Log In</button></li>
+                                                    <li class="nav-item" data-tab-select="register"><button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" role="tab" aria-controls="register" aria-selected="false">Register</button></li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade active show" data-tab="login" id="login" aria-labelledby="login-tab">
+                                                    <form method="post" action="{% url 'login' %}" class="woocommerce-form login">
+                                                        {% csrf_token %}
+                                                        <p class="form-group"><input name="username" class="form-control border" type="text" placeholder="User Name"></p>
+                                                        <p class="form-group"><input class="form-control border" name="password" type="password" placeholder="Password"></p>
+                                                        <p class="form-group"><button type="submit" class="vs-btn">Login</button></p>
+                                                        <p><a href="#" class="btn-inline">Forgot Your Password?</a></p>
+                                                    </form>
+                                                </div>
+
+                                                <div class="tab-pane fade" data-tab="register" id="register" aria-labelledby="register-tab">
+                                                    <form method="post" action="{% url 'register' %}" class="woocommerce-form register">
+                                                        {% csrf_token %}
+                                                        <p class="form-group"><input name="email" class="form-control" type="email" placeholder="Email"></p>
+                                                        <p class="form-group"><input name="username" class="form-control" type="text" placeholder="User Name"></p>
+                                                        <p class="form-group"><input class="form-control" name="password" type="password" placeholder="Password"></p>
+                                                        <div>
+                                                            <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy</a>.</p>
+                                                        </div>
+                                                        <p class="form-group mt-40"><button type="submit" class="vs-btn">Register</button></p>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--==============================
+			Footer Area
+	==============================-->
+    <div class="bg2" data-bg-src="{% static 'assets/img/footer/footer-bg-1.jpg' %}">
+    </div>
+
+
+    <!--********************************
+			Code End  Here 
+	******************************** -->
+
+
+    <!-- Scroll Top Top Button -->
+    <a href="#" class="scrollToTop"><i class="far fa-angle-up"></i></a>
+
+
+
+
+    <!--==============================
+        All Js File
+    ============================== -->
+    <!-- Jquery -->
+    <script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <!-- Slick Slider -->
+    <script src="{% static 'assets/js/slick.min.js' %}"></script>
+    <!-- <script src="assets/js/app.min.js"></script> -->
+    <!-- Layerslider -->
+    <script src="{% static 'assets/js/layerslider.utils.js' %}"></script>
+    <script src="{% static 'assets/js/layerslider.transitions.js' %}"></script>
+    <script src="{% static 'assets/js/layerslider.kreaturamedia.jquery.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Date Picker -->
+    <script src="{% static 'assets/js/jquery.datetimepicker.min.js' %}"></script>
+    <!-- Filter -->
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <!-- Magnific Popup -->
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Jquery UI -->
+    <script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+    <!-- WOW JS (Animation JS) -->
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <!-- Custom Carousel -->
+    <script src="{% static 'assets/js/vscustom-carousel.min.js' %}"></script>
+    <!-- Mobile Menu -->
+    <script src="{% static 'assets/js/vsmenu.min.js' %}"></script>
+    <!-- Form Js -->
+    <script src="{% static 'assets/js/ajax-mail.js' %}"></script>
+    <!-- Main Js File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

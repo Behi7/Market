@@ -1,0 +1,62 @@
+{% load static %}
+<div class="menu-area">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col col-lg-auto">
+                <div class="header-logo">
+                    <a href="{% url 'index' %}"><img src="{% static 'assets/img/logo.svg' %}" alt="Foodano"></a>
+                </div>
+            </div>
+            <div class="col-auto">
+                <nav class="main-menu mobile-menu-active menu-style2">
+                    <ul>
+                        <li class="menu-item-has">
+                            <a href="{% url 'index' %}">домой</a>
+                        </li>
+                        <li class="menu-item-has">
+                            <a href="{% url 'shop' %}">магазин</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                        <a class="header-buttons">категории</a>
+                        <ul class="sub-menu">
+                            {% for category in categorys %}
+                            <li class="menu-item-has-children">
+                                <img src="{{ category.img.url }}" width="50" height="50">
+                                <a class="header-buttons" href="{% url 'categoryProductlist' category.slug %}">{{ category }}</a>
+                                <ul class="sub-menu">
+                                    {% for subcategory in category.subcategorieslist %}
+                                    <img src="{{ subcategory.img.url }}" width="50" height="50">
+                                    <li><a class="header-buttons" href="{% url 'categorysubcategorylist' category.slug subcategory.slug %}">{{ subcategory.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                        </li>
+                            {% endfor %}
+                        </ul>
+                        </li>
+                        <li class="menu-item-has">
+                            <a href="{% url 'login' %}">аккаунт</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-auto d-none d-sm-block">
+                <div class="header-buttons">
+                    {% if user.username %}
+                    <a href="{% url 'log_out' %}"><i class="fal fa-user"></i>{{ user.username }}</a>
+                    {% else %}
+                    <a href="{% url 'login' %}"><i class="fal fa-login"></i>login/register</a>
+                    {% endif %}
+                    <button type="button" class="searchBoxTggler"><i class="far fa-search"></i></button>
+                    <a href="{% url 'wishList' %}"><i class="fal fa-heart"></i></a>
+                    <a href="{% url 'myCart' %}"><i class="fal fa-shopping-cart"></i><span class="badge"></span></a>
+                </div>
+            </div>
+            <div class="col-auto d-block d-lg-none">
+                <button type="button" class="vs-menu-toggle "><i class="far fa-bars"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% enter block %}
+
+{%%}

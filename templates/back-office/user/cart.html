@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="preloader  ">
+        <button class="vs-btn preloaderCls">Cancel Preloader </button>
+        <div class="preloader-inner">
+            <div class="loader-logo">
+                <img src="assets/img/logo.svg" alt="Foodano">
+            </div>
+            <div class="loader-wrap pt-4">
+                <span class="loader"></span>
+            </div>
+        </div>
+    </div>
+
+    <!--==============================
+    Mobile Menu
+  ============================== -->
+    <div class="vs-menu-wrapper">
+        <div class="vs-menu-area">
+            <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo">
+                <a href="index.html"><img src="assets/img/logo.svg" alt="Foodano"></a>
+            </div>
+            <div class="vs-mobile-menu link-inherit"></div><!-- Menu Will Append With Javascript -->
+        </div>
+    </div>
+    <!--==============================
+        Header Area
+    ==============================-->
+    <header class="header-wrapper header-layout3 header3-margin ">
+        <div class="container py-30">
+            <div class="row align-items-center">
+                <div class="col-6">
+                    <div class="header-logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'assets/img/logo.svg' %}" alt="Foodano"></a>
+                    </div>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" class="vs-menu-toggle d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
+                    <div class="head-top-links text-body2 d-none d-lg-block">
+                        <a href="{% url 'wishList' %}" class="icon-btn has-badge bg3 me-3"><i class="fal fa-heart"></i><span class="badge">0</span></a>
+                        <a href="{% url 'myCart' %}" class="icon-btn has-badge"><i class="fal fa-shopping-cart"></i><span class="badge">0</span></a>
+                        <span class="icon-btn bg4"><i class="fal fa-user"></i></span>
+                        <ul>
+                            {% if user %}
+                            <li>{{ user.username }}</li>
+                            <li><a href="{% url 'log_out' %}">logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container d-none d-lg-block">
+            <div class="header3-inner position-relative">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-xl-7">
+                        <nav class="main-menu menu-style1 mobile-menu-active menu-style2">
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--==============================
+    Breadcumb
+============================== -->
+    <div class="breadcumb-wrapper breadcumb-layout1 bg-fluid pt-100 pb-100" data-bg-src="assets/img/breadcumb/breadcumb-img-1.jpg">
+        <div class="container">
+            <div class="breadcumb-content text-center">
+                <h1 class="breadcumb-title">Cart</h1>
+                <ul class="breadcumb-menu-style1 mx-auto">
+                    <li><a href="{% url 'index' %}">домой</a></li>
+                    <li class="active">корзина</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+    Cart Area
+    ==============================-->
+    <div class="vs-cart-wrapper  space-top space-md-bottom">
+        <div class="container">
+            <div class="woocommerce-notices-wrapper">
+                <div class="woocommerce-message">Shipping costs updated.</div>
+            </div>
+            <form action="#" class="woocommerce-cart-form">
+                <table class="cart_table">
+                    <thead>
+                        <tr>
+                            <th class="cart-col-image"></th>
+                            <th class="cart-col-productname">название</th>
+                            <th class="cart-col-price">цена</th>
+                            <th class="cart-col-quantity">количество</th>
+                            <th class="cart-col-total">всего</th>
+                            <th class="cart-col-remove"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if cart %}
+                        {% for product in cart_products %}
+                        <tr class="cart_item">
+                            <td data-title="Product">
+                                <a class="cart-productimage" href="shop-details.html"><img width="91" height="91" src="{{ product.product.img.url }}" alt="Image"></a>
+                            </td>
+                            <td data-title="Name">
+                                <a class="cart-productname" href="{% url 'product_detail' product.product.subcategory.category.slug product.product.subcategory.slug product.product.slug %}">{{ product.product.name }}</a>
+                            </td>
+                            <td data-title="Price">
+                                <span class="amount"><bdi><span>$</span>{{ product.product.price }}</bdi></span>
+                            </td>
+                            <td data-title="quantity">
+                                <div class="quantity">
+                                    <a href="{% url 'plusOrMinusCart' product.id 'minus' %}" class="vs-btn rounded-1 shadow-none"><i class="far fa-minus"></i></a>
+                                    <span style="padding: 15px; margin-bottom: 5px">{{ product.quantity }}</span>
+                                    <a href="{% url 'plusOrMinusCart' product.id 'plus' %}" class="vs-btn rounded-1 shadow-none"><i class="far fa-plus"></i></a>
+                                </div>
+                            </td>
+                            <td data-title="Total">
+                                <span class="amount"><bdi><span>$</span>{{ product.total }}</bdi></span>
+                            </td>
+                            <td data-title="Remove">
+                                <a href="{% url 'deleteProductCart' product.id %}" class="remove"><i class="fal fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                        <tr>
+                            <td colspan="" class="actions">
+                                <div class="bottom-btn">
+                                    {% if cart_products.has_previous %}
+                                    <a href="?page={{ cart_products.previous_page_number }}" class="vs-btn style"><i class="fas fa-angle-left"></i></a>
+                                        {% endif %}
+                                    <span class="current">
+                                        страница {{ cart_products.number }} из {{ cart_products.paginator.num_pages }}
+                                    </span>
+                                        {% if cart_products.has_next %}
+                                    <a href="?page={{ cart_products.next_page_number }}" class="vs-btn style"><i class="fas fa-angle-right"></i></a>
+                                        {% endif %}
+                                </div>
+                            </td>
+                            <td colspan="6" class="actions">
+                                <a href="{% url 'fullDeleteCart' %}" class="vs-btn style2 rounded-1 shadow-none"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a href="{% url 'index' %}" class="vs-btn rounded-1 shadow-none">продолжить покупку</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <div class="row justify-content-end">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                    <h2 class="h4 summary-title">сделать заказ</h2>
+                    <table class="cart_totals">
+                        <tbody>
+                            <tr class="shipping">
+                                <th>ваши данные</th>
+                                <td data-title="Shipping and Handling">
+                                    <form action="{% url 'createOrder' %}" method="POST" id="order-form">
+                                        {% csrf_token %}
+                                        <a href="shop-details.html" class="shipping-calculator-button">указать данные</a>
+                                        <div class="shipping-calculator-form">
+                                            <p class="form-row">
+                                                <input type="text" class="form-control" placeholder="адрес доставки" name="address">
+                                            </p>
+                                            <p class="form-row">
+                                                <input type="text" class="form-control" placeholder="телефонный номер" name="phone" id="phone">
+                                            </p>
+                                        </div>
+                                        <tfoot>
+                                            <tr class="order-total">
+                                                <td>стоимость корзины</td>
+                                                <td data-title="Total">
+                                                    <strong><span class="amount"><bdi><span>$</span>{{totalcart}}</bdi></span></strong>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                                <div class="wc-proceed-to-checkout mb-30">
+                                                    <button type='submit' class="vs-btn rounded-1 shadow-none">Заказать</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+    <!--********************************
+			Code End  Here 
+	******************************** -->
+
+
+    <!-- Scroll Top Top Button -->
+{%  endblock %}   

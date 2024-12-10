@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!--==============================
+        Header Area
+    ==============================-->
+    <div class="menu-area">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col col-lg-auto">
+                    <div class="header-logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'assets/img/logo.svg' %}" alt="Foodano"></a>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <nav class="main-menu mobile-menu-active menu-style2">
+                        <ul>
+                            <li class="menu-item-has">
+                                <a href="{% url 'index' %}">домой</a>
+                            </li>
+                            <li class="menu-item-has">
+                                <a href="{% url 'shop' %}">магазин</a>
+                            </li>
+                            <li class="menu-item-has">
+                                <a href="{% url 'login' %}">аккаунт</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-auto d-none d-sm-block">
+                    <div class="header-buttons">
+                        {% if user.username %}
+                        <a href="{% url 'log_out' %}"><i class="fal fa-user"></i>{{ user.username }}</a>
+                        {% else %}
+                        <a href="{% url 'login' %}"><i class="fal fa-login"></i>login/register</a>
+                        {% endif %}
+                        <button type="button" class="searchBoxTggler"><i class="far fa-search"></i></button>
+                        <a href="{% url 'wishList' %}"><i class="fal fa-heart"></i></a>
+                        <a href="{% url 'myCart' %}"><i class="fal fa-shopping-cart"></i><span class="badge"></span></a>
+                    </div>
+                </div>
+                <div class="col-auto d-block d-lg-none">
+                    <button type="button" class="vs-menu-toggle "><i class="far fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+    Breadcumb
+============================== -->
+    <div class="breadcumb-wrapper breadcumb-layout1 bg-fluid pt-100 pb-100" data-bg-src="static/assets/img/breadcumb/breadcumb-img-1.jpg">
+        <div class="container">
+            <div class="breadcumb-content text-center">
+                <h1 class="breadcumb-title">избранные</h1>
+                <ul class="breadcumb-menu-style1 mx-auto">
+                    <li><a href="index.html">домой</a></li>
+                    <li class="active">избранные</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class=" space">
+        <div class="container">
+            <div class="tinv-wishlist">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="product-cb">#</th>
+                            <th class="product-name">название</th>
+                            <th class="product-price">цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for wish in wish_list %}
+                        <tr class="wishlistitem">
+                            <td class="product-cb">{{ forloop.counter }}</td>
+                            <td class="product-name"><a href="shop-details.html">{{ wish.product.name }}</a></td>
+                            <td class="product-price"><span class="amount">{{ wish.product.price }}</span></td>
+                            <td class="product-action"><button class="button vs-btn"><i class="fal fa-shopping-cart"></i><a href="{% url 'addProductToCart' wish.product.id %} "></a></button></td>
+                            <td class="product-action"><button  class="button vs-btn"><i class="fal fa-trash-alt"><a href="{% url 'delWish' wish.id %}"></a></i></button></td>
+                        </tr>
+                        {% endfor %}
+                </table>
+                <div class="social-buttons">
+                    <span>Share on</span>
+                    <ul>
+                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" title="Pinterest"><i class="fab fa-pinterest-p"></i></a></li>
+                        <li><a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a></li>
+                        <li><a href="#" title="Clipboard"><i class="far fa-clipboard"></i></a></li>
+                        <li><a href="#" title="Email"><i class="far fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+			Footer Area
+	==============================-->
+    <div class="bg2" data-bg-src="static/assets/img/footer/footer-bg-1.jpg">
+        <!--==============================
+    Subscribe Area
+    ==============================-->
+    </div>
+    {% endblock %}
