@@ -1,34 +1,38 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.shortcuts import render
+from . import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q 
 
-def register_user(request):
-    if request.method == 'POST':
-        User.objects.create_user(
-            username = request.POST['username'],
-            password = request.POST['password'],
-            email= request.POST['email']
-        )
-        return redirect('login')
-    return render(request, 'login-register.html')
+def main(request):
+    context = {}
+    products = models.Product.objects.all()
+    paginator = Paginator(products, 1)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+    context['products'] = products
+    context['products'] = products
+    context['banners']= models.Banner.objects.filter(is_active = True)[:5]
+    context['info'] = models.Info.objects.last()
+    try:
+        wishProducts = models.WishList.objects.filter(user = request.user)
+        for wish in wishProducts:
+            for product in products:
+                if wish.product.id == product.id:
+                    product.is_active = True
+    except:
+        ...
+    categories = models.Category.objects.all()
+    context['categorys'] = categories
+    return render(request, 'index.html', context)
 
-
-def login_user(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('index')
-        else:
-            return redirect('error')
-    return render(request, 'login-register.html')
-
-
-def log_out(request):
-    logout(request)
-    return redirect('index')
-
-def error(request):
-    return redirect('register')
+def search(request):
+    query = ""
+    results = []
+    if request.method == "POST":
+        results = models.Product.objects.filter(name__icontains=request.POST['search'])
+    return render(request, 'shop.html', {'products': results, 'query': query})
